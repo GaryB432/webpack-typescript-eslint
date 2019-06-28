@@ -6,18 +6,15 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'prettier/@typescript-eslint',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'prettier', 'prettier/@typescript-eslint'],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 1,
-    '@typescript-eslint/indent': 0,
-    '@typescript-eslint/no-parameter-properties': 0,
+    'prettier/prettier': 'warn',
+    'sort-keys': 'error',
+    '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/no-parameter-properties': 'off',
     '@typescript-eslint/member-ordering': [
-      2,
+      'error',
       {
         default: [
           'public-static-field',

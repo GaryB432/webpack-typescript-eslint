@@ -4,7 +4,6 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FriendlyFormatter = require('eslint-formatter-friendly');
 
 
 const mode = 'production';
@@ -33,7 +32,6 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.ts$/,
-        exclude: /node_modules/,
         loader: 'eslint-loader',
       },
       {
@@ -63,8 +61,8 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{ from: 'public' }]),
-    
-    ],
+  
+  ],
 
   resolve: {
     modules: ['node_modules', path.resolve(process.cwd(), 'src')],
