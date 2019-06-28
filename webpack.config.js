@@ -1,8 +1,6 @@
 'use strict';
 const path = require('path');
 
-const FriendlyFormatter = require('eslint-formatter-friendly');
-
 const mode = 'production';
 
 module.exports = {
@@ -31,22 +29,6 @@ module.exports = {
         test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
-        options: {
-          formatter: FriendlyFormatter,
-          parser: '@typescript-eslint/parser',
-          extends: [
-            'plugin:@typescript-eslint/recommended',
-          ],
-          plugins: ['@typescript-eslint'],
-          // rules: { // works with rules like this
-          //   'sort-keys': 2,
-          //   '@typescript-eslint/explicit-function-return-type': 2,
-          // },
-          env: {
-            browser: true,
-            node: true,
-          },
-        },
       },
     ],
   },
