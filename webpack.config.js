@@ -1,11 +1,17 @@
 'use strict';
 const path = require('path');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyFormatter = require('eslint-formatter-friendly');
+
+
 const mode = 'production';
 
 module.exports = {
   entry: {
-    'wts5': ['scripts/app.ts'],
+    'webpack-typescript-eslint': ['scripts/app.ts'],
   },
 
   context: path.join(process.cwd(), 'src'),
@@ -30,12 +36,64 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
       },
+      {
+        test: /\.(css|sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
     ],
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'public/index.html',
+      chunksSortMode: 'dependency',
+    }),
+
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[id].[hash].css',
+    }),
+
+    new CopyWebpackPlugin([{ from: 'public' }]),
+    
+    ],
 
   resolve: {
     modules: ['node_modules', path.resolve(process.cwd(), 'src')],
     extensions: ['.ts', '.js', 'scss'],
   },
 
+  devServer: {
+    contentBase: './dist',
+    clientLogLevel: 'info',
+    port: 8080,
+    inline: true,
+    historyApiFallback: false,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 500,
+    },
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+
+  devtool: 'inline-source-map',
 };

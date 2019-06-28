@@ -1,10 +1,7 @@
-const someObj = {
-  b: 9,
-  a: 4,  // member out of order
-};
+import '../styles/app.scss';
 
-export function someNumber() { // no return type
-  return undefined;
-}
+import { Greeter } from './greeter';
 
-console.log(someNumber()!); // non-null assertion
+const greeter: Greeter = new Greeter('webpack-typescript-eslint');
+
+greeter.start(document.getElementById('app')!);
