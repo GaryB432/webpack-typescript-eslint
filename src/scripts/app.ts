@@ -18,4 +18,4 @@ console.log(someObj);
 
 const greeter: Greeter = new Greeter('webpack-typescript-eslint');
 
-greeter.start(document.getElementById('app')!);
+greeter.start(document.getElementById('appwtf')!);
