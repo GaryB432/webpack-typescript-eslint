@@ -30,11 +30,6 @@ module.exports = {
         loader: 'ts-loader',
       },
       {
-        enforce: 'pre',
-        test: /\.ts$/,
-        loader: 'eslint-loader',
-      },
-      {
         test: /\.(css|sass|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
@@ -61,7 +56,7 @@ module.exports = {
     }),
 
     new CopyWebpackPlugin([{ from: 'public' }]),
-  
+
   ],
 
   resolve: {

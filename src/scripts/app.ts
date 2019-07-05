@@ -7,7 +7,7 @@ const someObj = {
   b: 9,
 };
 
-export function someNumber(): number | undefined {
+export function someNumber(): number | undefined | string {
   // no return type
   return undefined;
 }
